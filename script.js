@@ -1,18 +1,20 @@
 let updateSubTotal;
 let updateTaxNum;
+let totalVal;
+let PlusInputVal;
 
 //Plus Buttton
 function increasePlus(id) {
   let inputStr = document.getElementById(id).value;
   let inputNum = parseInt(inputStr);
-  let PlusInputVal = inputNum + 1;
+  PlusInputVal = inputNum + 1;
   document.getElementById(id).value = PlusInputVal;
 }
 // product value
 function CustomizeProductval(id, ProductVal) {
   let firstStr = document.getElementById(id).innerText;
   let firstNum = parseInt(firstStr);
-  let totalVal = firstNum + ProductVal;
+  totalVal = firstNum + ProductVal;
   document.getElementById(id).innerText = totalVal;
 }
 // sub total
@@ -122,16 +124,49 @@ document.getElementById("minusBtn1").addEventListener("click", function () {
 document.getElementById("removeItem").addEventListener("click", function () {
   let removeItem = document.getElementById("cartItem");
   removeItem.style.display = "none";
-  CustomizeSubTotal("subTotal", -1219);
-  CustomizeExtraTex("tax", -4);
-  fixTotal("total");
+
+  let firstVal = document.getElementById("firstVal").innerText;
+  let firstNum = parseInt(firstVal);
+
+  let inputStr = document.getElementById("input1").value;
+  let inputNum = parseInt(inputStr) * 4;
+
+  let subTotal = document.getElementById("subTotal").innerText;
+  let subTotalNum = parseInt(subTotal);
+
+  let tax = document.getElementById("tax").innerText;
+  let taxNum = parseInt(tax);
+
+  let total = document.getElementById("total").innerText;
+  let totalNum = parseInt(total);
+
+  document.getElementById("subTotal").innerText = subTotalNum - firstNum;
+  document.getElementById("tax").innerText = taxNum - inputNum;
+  document.getElementById("total").innerText = totalNum - (firstNum + inputNum);
 });
+
 document.getElementById("removeItem2").addEventListener("click", function () {
   let removeItem = document.getElementById("cartItem2");
   removeItem.style.display = "none";
-  CustomizeSubTotal("subTotal", -59);
-  CustomizeExtraTex("tax", -1);
-  fixTotal("total");
+
+  let firstVal = document.getElementById("secondVal").innerText;
+  let firstNum = parseInt(firstVal);
+
+  let inputStr = document.getElementById("input2").value;
+  let inputNum = parseInt(inputStr) * 1;
+
+  let subTotal = document.getElementById("subTotal").innerText;
+  let subTotalNum = parseInt(subTotal);
+
+  let tax = document.getElementById("tax").innerText;
+  let taxNum = parseInt(tax);
+
+  let total = document.getElementById("total").innerText;
+  let totalNum = parseInt(total);
+
+  document.getElementById("subTotal").innerText = subTotalNum - firstNum;
+  document.getElementById("tax").innerText = taxNum - inputNum;
+  document.getElementById("total").innerText = totalNum - (firstNum + inputNum);
 });
 
 // checkout
